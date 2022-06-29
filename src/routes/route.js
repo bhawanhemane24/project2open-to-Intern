@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router(); 
 
+
 const collegeController = require('../Controller/CollegeController')
 const InternController = require('../Controller/InternController')
 

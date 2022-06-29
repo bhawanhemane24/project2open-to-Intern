@@ -23,12 +23,22 @@
 
   `Endpoint: BASE_URL/functionup/colleges`
 
+-------------------------------------------------
+
+
 ### POST /functionup/interns
 - Create a document for an intern. 
 - Also save the collegeId along with the document. Your request body contains the following fields - { name, mobile, email, collegeName}
 - Return HTTP status 201 on a succesful document creation. Also return the document. The response should be a JSON object like [this](#successful-response-structure) 
 
 - Return HTTP status 400 for an invalid request with a response body like [this](#error-response-structure)
+-------------------------------------------
+validatin for-
+1. name
+2. regex for mobile
+3. regex for email
+4. collegeName  must be string 
+---------------------------------------
 
 ### GET /functionup/collegeDetails
 - Returns the college details for the requested college (Expect a query parameter by the name `collegeName`. This is anabbreviated college name. For example `iith`)
@@ -126,4 +136,11 @@ Refer below sample
 }
 ```
 
-dflnskjefh
+
+Prefix value = https://functionup-stg.s3.ap-south-1.amazonaws.com/radon/
+The s3 link is formed by adding your logo name after a fixed prefix value. For example if in the final list your logo file name is shown as au-allahabad.jpeg , then the final link value would be https://functionup-stg.s3.ap-south-1.amazonaws.com/radon/au-allahabad.jpeg
+
+You must open this link in chrome to see if this is a publicly accessible s3 url before you create a document in your colleges collection with this value
+
+
+abbv my link - https://functionup-stg.s3.ap-south-1.amazonaws.com/radon/abvv.jpg
