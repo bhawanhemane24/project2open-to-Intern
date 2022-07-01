@@ -10,10 +10,6 @@ const isValidMobile = function (value) {
   if (/^(\+\d{1,3}[- ]?)?\d{10}$/.test(value)) { return true }
   else return false
 }
-// const isValidObjectId = (objectId) => {
-//   return mongoose.Types.ObjectId.isValid(objectId);
-// };
-
 
 const interns = async function (req, res) {
   try {
@@ -36,7 +32,7 @@ const interns = async function (req, res) {
 
     const findMobile = await InternModel.findOne({ mobile })
     if (findMobile) return res.status(409).send({ status: false, msg: "Existing Mobile NUmber" }) // 409 is for duplicate existing
-    console.log(findMobile)
+    console.log(findMobile)   
 
     const findMail = await InternModel.findOne({ email })
     if (findMail) return res.status(409).send({ status: false, msg: "Existing Email" })
