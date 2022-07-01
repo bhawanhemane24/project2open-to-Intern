@@ -2,11 +2,6 @@ const { find } = require('../Model/CollegeModel')
 const CollegeModel = require('../Model/CollegeModel')
 const InternModel = require('../Model/InternModel')
 
-const isValidUrl = function (value) {
-    /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi.test(value)
-
-}
-
 const colleges = async function (req, res) {
     try {
         let data = req.body
@@ -20,11 +15,12 @@ const colleges = async function (req, res) {
 
         if (!logoLink) return res.status(400).send({ status: false, msg: "Logo link is required" })
 
-        if (!isValidUrl(logoLink)) return res.status(400).send({ status: false, msg: "Please Enter valid Url" })
-
-        const findName = await CollegeModel.findOne({ name })
+      if (!/(https?:\/\/.*\.(?:jpg|jpeg|png|gif))/i.test(logoLink)){
+         return res.status(400).send({ status: false, msg: "Please Enter valid Url" })
+      }
+        const findName = await CollegeModel.findOne({name})
         if (findName) return res.status(400).send({ status: false, msg: "Existing college Name try different" })
-        console.log(findName)
+
         const createdData = await CollegeModel.create(data)
         return res.status(201).send({ status: true, data: createdData })
     } catch (error) {

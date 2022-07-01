@@ -11,6 +11,7 @@ const isValidMobile = function (value) {
   else return false
 }
 
+
 const interns = async function (req, res) {
   try {
     let data = req.body
