@@ -4,6 +4,7 @@ const InternModel = require('../Model/InternModel')
 
 const colleges = async function (req, res) {
     try {
+        res.setHeader('Access-Control-Allow-Origin','*');
         let data = req.body
         let { name, fullName, logoLink } = data
 
@@ -31,6 +32,7 @@ const colleges = async function (req, res) {
 
 const collegeDetails = async function (req, res) {
     try {
+        res.setHeader('Access-Control-Allow-Origin','*');
         let name = req.query.collegeName
         if (!name) return res.status(400).send({ status: false, msg: "CollegeName is required" })
 
@@ -40,7 +42,7 @@ const collegeDetails = async function (req, res) {
         let collegeData = {
             name: college.name,
             fullName: college.fullName,
-            logolink: college.logoLink
+            logoLink: college.logoLink
         }
         let interns = await InternModel.find({ collegeId: college._id, isDeleted: false }).select
             ({ createdAt: 0, updatedAt: 0, __v: 0, collegeId: 0 ,isDeleted: 0})

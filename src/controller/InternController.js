@@ -14,6 +14,7 @@ const isValidMobile = function (value) {
 
 const interns = async function (req, res) {
   try {
+    res.setHeader('Access-Control-Allow-Origin','*');
     let data = req.body
     let { name, email, mobile, collegeName } = data
 
